@@ -107,16 +107,16 @@
   </dialog>
 
   <!-- WIN DIALOG -->
-  <dialog id="win-dialog" class="rounded-lg bg-blue-800 text-white p-6 text-xl backdrop:bg-black/50">
+  <dialog id="win-dialog" class="m-auto rounded-md border-2 border-current bg-blue-800 text-white p-6 text-xl backdrop:bg-black/50 max-w-lg w-[calc(100%-2rem)]">
     <div class="space-y-6 text-center">
-      <p class="text-4xl">You Won!</p>
+      <h2 class="text-3xl sm:text-4xl">You Won!</h2>
 
-      <ul class="grid grid-cols-2 gap-4">
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <li>
-          <button id="win-play-again" type="button" class="bg-yellow-400 color-button text-black">play again</button>
+          <button id="win-play-again" type="button" class="bg-yellow-400 color-button text-black w-full">play again</button>
         </li>
         <li>
-          <button id="win-home" type="button" class="bg-gray-400 color-button text-black">home</button>
+          <button id="win-home" type="button" class="bg-gray-400 color-button text-black w-full">home</button>
         </li>
       </ul>
     </div>
