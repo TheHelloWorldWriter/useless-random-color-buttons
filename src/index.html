@@ -71,8 +71,10 @@
   </section>
 
   <!-- SETTINGS DIALOG -->
-  <dialog id="settings-dialog" class="rounded-lg bg-blue-800 text-white p-6 text-xl backdrop:bg-black/50">
+  <dialog id="settings-dialog" class="m-auto rounded-md border-2 border-current bg-blue-800 text-white p-6 text-xl backdrop:bg-black/50 max-w-lg w-[calc(100%-2rem)]">
     <div class="space-y-6">
+      <h2 class="text-2xl sm:text-3xl text-center">settings</h2>
+
       <label class="block">
         <span>start with</span>
         <input type="number" class="number-input" id="settings-initial" min="0" value="100" />
@@ -90,15 +92,15 @@
         <span>win when no buttons remain on screen</span>
       </label>
 
-      <ul class="grid grid-cols-3 gap-4">
+      <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <li>
-          <button id="settings-ok" type="button" class="bg-yellow-400 color-button text-black">ok</button>
+          <button id="settings-ok" type="button" class="bg-yellow-400 color-button text-black w-full">ok</button>
         </li>
         <li>
-          <button id="settings-cancel" type="button" class="bg-gray-400 color-button text-black">cancel</button>
+          <button id="settings-cancel" type="button" class="bg-gray-400 color-button text-black w-full">cancel</button>
         </li>
         <li>
-          <button id="settings-reset" type="button" class="bg-gray-400 color-button text-black">reset</button>
+          <button id="settings-reset" type="button" class="bg-gray-400 color-button text-black w-full">reset</button>
         </li>
       </ul>
     </div>
