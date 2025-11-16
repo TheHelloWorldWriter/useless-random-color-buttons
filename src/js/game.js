@@ -47,7 +47,7 @@ function stopGame() {
 }
 
 function removeAllButtons() {
-  const buttons = document.querySelectorAll('.absolute.color-button');
+  const buttons = document.querySelectorAll('.game-button');
   buttons.forEach((button) => button.remove());
 }
 
@@ -79,7 +79,7 @@ function startUpdatingStats() {
 
 function addButton() {
   const button = document.createElement('button');
-  button.classList.add('absolute', 'color-button');
+  button.classList.add('absolute', 'color-button', 'game-button');
 
   const color = getRandomColor();
   button.textContent = color.backcolor;
