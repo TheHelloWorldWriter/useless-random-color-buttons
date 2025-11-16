@@ -3,7 +3,7 @@ node_modules/
 package-lock.json
 
 # build artefacts
-_site/
+dist/
 
 # vscode (IDE) generated files
 .vscode/*

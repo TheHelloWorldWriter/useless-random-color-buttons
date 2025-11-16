@@ -1,57 +1,35 @@
+// Copyright 2020-2025 The Hello World Writer. All rights reserved.
+// Use of this source code is governed by an MIT-style license that can be
+// found in the LICENSE file.
 
+'use strict';
 
-let initialCountEl;
-let addButtonDelayEl;
-let winOnZeroButtonsEl;
+const initialCountEl = document.getElementById('settings-initial');
+const addButtonDelayEl = document.getElementById('settings-delay');
+const winOnZeroButtonsEl = document.getElementById('settings-win-on-zero-buttons');
 
-function initPage() {
+const DEFAULT_INITIAL_COUNT = 100;
+const DEFAULT_ADD_BUTTON_DELAY = 1000;
+const DEFAULT_WIN_ON_ZERO_BUTTONS = true;
 
-  initialCountEl = document.querySelector('#settings-initial');
-  addButtonDelayEl = document.querySelector('#settings-delay');
-  winOnZeroButtonsEl = document.querySelector('#settings-win-on-zero-buttons');
+function loadSettings() {
+  initialCountEl.value = localStorage.getItem('initialCount') ?? DEFAULT_INITIAL_COUNT;
+  addButtonDelayEl.value = localStorage.getItem('addButtonDelay') ?? DEFAULT_ADD_BUTTON_DELAY;
 
-  initialCountEl.value = localStorage.getItem('initialCount') ?? 100;
-  addButtonDelayEl.value = localStorage.getItem('addButtonDelay') ?? 1000;
-
-  const winOnZeroButtons = localStorage.getItem('winOnZeroButtons') ?? true;
-  console.log(winOnZeroButtons);
-  winOnZeroButtonsEl.checked = winOnZeroButtons === 'true';
-  console.log(winOnZeroButtons === 'true');
-  // winOnZeroButtonsEl.checked = winOnZeroButtons;
-  // keepPlayingEl.checked = winOnZeroButtons == false;
-  // if (winOnZeroButtons == true) {
-  //   console.log('winOnZeroButtonsEl');
-  //   keepPlayingEl.checked = false;
-  //   winOnZeroButtonsEl.checked = true;
-  // } else {
-  //   console.log('keepPlayingEl');
-  //   winOnZeroButtonsEl.checked = false;
-  //   keepPlayingEl.checked = true;
-  // }
-
-  // Initialize buttons' click events
-  document.querySelector('#settings-ok').addEventListener('click', okClicked);
-  document.querySelector('#settings-cancel').addEventListener('click', (e) => history.back());
-  document.querySelector('#settings-reset').addEventListener('click', resetClicked);
+  const winOnZeroButtons = localStorage.getItem('winOnZeroButtons');
+  winOnZeroButtonsEl.checked = winOnZeroButtons === null ? DEFAULT_WIN_ON_ZERO_BUTTONS : winOnZeroButtons === 'true';
 }
 
-function okClicked() {
-
+function saveSettings() {
   localStorage.setItem('initialCount', initialCountEl.value);
   localStorage.setItem('addButtonDelay', addButtonDelayEl.value);
   localStorage.setItem('winOnZeroButtons', winOnZeroButtonsEl.checked);
-  console.log(winOnZeroButtonsEl.checked);
-
-  location.assign('/');
 }
 
-function resetClicked() {
-  initialCountEl.value = 100;
-  addButtonDelayEl.value = 1000;
-  winOnZeroButtonsEl.checked = true;
+function resetSettings() {
+  initialCountEl.value = DEFAULT_INITIAL_COUNT;
+  addButtonDelayEl.value = DEFAULT_ADD_BUTTON_DELAY;
+  winOnZeroButtonsEl.checked = DEFAULT_WIN_ON_ZERO_BUTTONS;
 }
 
-/**
- * Initialize the page in the window load event.
- */
- window.addEventListener("load", initPage);
+export { loadSettings, saveSettings, resetSettings };
