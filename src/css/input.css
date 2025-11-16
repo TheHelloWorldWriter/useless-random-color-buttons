@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+}
+
+@layer components {
+
+  .number-input {
+    @apply bg-transparent border-b-2 border-current mx-2 w-20;
+  }
+
+  .radio-input {
+    @apply appearance-none border-2 border-white checked:bg-white h-4 p-1 rounded-full text-2xl w-4;
+  }
+
+  .color-button {
+    @apply border-2 border-current py-2 rounded-md text-2xl w-36 inline-block text-center;
+  }
+
+}
+
+@layer utilities {
+}
