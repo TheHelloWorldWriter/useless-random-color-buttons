@@ -1,8 +1,8 @@
 {
   "recommendations": [
-    "ritwickdey.liveserver",
-    "nhoizey.gremlins",
-    "henriiik.vscode-sort",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "codeandstuff.package-json-upgrade",
+    "mhutchie.git-graph",
+    "nhoizey.gremlins"
   ]
 }
