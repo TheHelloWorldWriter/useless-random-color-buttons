@@ -21,20 +21,34 @@
 <body class="antialiased bg-blue-800 h-screen select-none text-white touch-manipulation">
 
   <!-- HOME VIEW -->
-  <section id="home-view" class="flex h-full items-center justify-center p-4 text-xl">
-    <div class="space-y-6">
+  <section id="home-view" class="relative flex h-full items-center justify-center p-4 text-xl">
+    <!-- Faded background buttons -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-15" aria-hidden="true">
+      <div class="absolute color-button" style="background-color: #e22b53; color: white; top: 8%; left: 12%;">#e22b53</div>
+      <div class="absolute color-button" style="background-color: #0d9539; color: white; top: 15%; left: 65%;">#0d9539</div>
+      <div class="absolute color-button" style="background-color: #0a0e28; color: white; top: 35%; left: 5%;">#0a0e28</div>
+      <div class="absolute color-button" style="background-color: #af2657; color: white; top: 60%; left: 75%;">#af2657</div>
+      <div class="absolute color-button" style="background-color: #4a90e2; color: white; top: 75%; left: 20%;">#4a90e2</div>
+      <div class="absolute color-button" style="background-color: #f5a623; color: black; top: 25%; left: 80%;">#f5a623</div>
+      <div class="absolute color-button" style="background-color: #7b68ee; color: white; top: 85%; left: 60%;">#7b68ee</div>
+      <div class="absolute color-button" style="background-color: #50c878; color: black; top: 45%; left: 85%;">#50c878</div>
+      <div class="absolute color-button hidden lg:block" style="background-color: #ff6b6b; color: white; top: 10%; left: 35%;">#ff6b6b</div>
+      <div class="absolute color-button hidden lg:block" style="background-color: #45b7d1; color: black; top: 70%; left: 40%;">#45b7d1</div>
+      <div class="absolute color-button hidden xl:block" style="background-color: #96ceb4; color: black; top: 50%; left: 25%;">#96ceb4</div>
+      <div class="absolute color-button hidden xl:block" style="background-color: #dda0dd; color: black; top: 20%; left: 48%;">#dda0dd</div>
+    </div>
+
+    <!-- Main content card -->
+    <div class="relative z-10 rounded-md border-2 border-current bg-blue-800 p-6 text-center space-y-6">
       <div>
-        <a href="https://github.com/TheHelloWorldWriter/useless-random-color-buttons" target="_blank" class="underline">The Hello World Writer</a>
+        <a href="https://github.com/TheHelloWorldWriter/useless-random-color-buttons" target="_blank" class="underline text-base">The Hello World Writer</a>
         <h1 class="text-3xl sm:text-4xl">useless random color buttons</h1>
       </div>
 
-      <p>
-        <button id="btn-settings" type="button" class="bg-gray-400 color-button text-black w-1/2">settings</button>
-      </p>
-
-      <p>
-        <button id="btn-start" type="button" class="bg-yellow-400 color-button text-black w-1/2">start</button>
-      </p>
+      <div class="flex gap-4 justify-center">
+        <button id="btn-settings" type="button" class="bg-gray-400 color-button text-black">settings</button>
+        <button id="btn-start" type="button" class="bg-yellow-400 color-button text-black">start</button>
+      </div>
     </div>
   </section>
 
