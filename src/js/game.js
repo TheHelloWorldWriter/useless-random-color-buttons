@@ -5,6 +5,7 @@
 'use strict';
 
 import { getRandomPosition, getRandomColor, formatDuration } from './utils.js';
+import { getIntSetting, getBoolSetting } from './config.js';
 
 // Game state
 let winOnZeroButtons = true;
@@ -43,10 +44,9 @@ function startGame(onWin) {
   removeAllButtons();
   addInitialButtons();
 
-  // Load settings from localStorage with proper type conversion
-  const storedDelay = localStorage.getItem('addButtonDelay');
-  const addButtonDelay = storedDelay !== null ? parseInt(storedDelay, 10) : 1000;
-  winOnZeroButtons = localStorage.getItem('winOnZeroButtons') !== 'false';
+  // Load settings from centralized config
+  const addButtonDelay = getIntSetting('addButtonDelay');
+  winOnZeroButtons = getBoolSetting('winOnZeroButtons');
 
   // Start adding buttons at regular intervals
   addButtonIntervalID = setInterval(() => addButton(), addButtonDelay);
@@ -147,8 +147,7 @@ function addButton() {
  * Buttons are added in batches to avoid blocking the UI thread.
  */
 function addInitialButtons() {
-  const storedCount = localStorage.getItem('initialCount');
-  const initialCount = storedCount !== null ? parseInt(storedCount, 10) : 100;
+  const initialCount = getIntSetting('initialCount');
 
   // Add buttons in batches to avoid UI freeze
   const BATCH_SIZE = 10;
