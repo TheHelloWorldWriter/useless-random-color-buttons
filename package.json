@@ -2,17 +2,19 @@
   "name": "useless-random-color-buttons",
   "version": "2.0.0",
   "description": "Useless random color buttons game",
-  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
-    "preview": "npx serve dist"
+    "clean": "rm -rf dist",
+    "copy": "mkdir -p dist/css dist/js dist/img && cp src/index.html dist/ && cp -r src/js/* dist/js/ && cp -r src/img/* dist/img/ && cp src/favicon.ico dist/ && cp src/sw.js dist/ && cp src/site.webmanifest dist/",
+    "dev:css": "npx @tailwindcss/cli -i ./src/css/input.css -o ./dist/css/output.css --watch",
+    "dev:serve": "npx serve dist",
+    "dev": "npm run clean && npm run copy && npm run build:css && (npm run dev:css & npm run dev:serve)",
+    "build:css": "npx @tailwindcss/cli -i ./src/css/input.css -o ./dist/css/output.css --minify",
+    "build": "npm run clean && npm run copy && npm run build:css"
   },
   "author": "The Hello World Writer",
   "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.17",
-    "esbuild": "^0.24.0"
+    "@tailwindcss/cli": "^4.1.17"
   }
 }
