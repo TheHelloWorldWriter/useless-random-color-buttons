@@ -12,6 +12,8 @@ const STATIC_ASSETS = [
   '/js/utils.js',
   '/js/config.js',
   '/img/github.svg',
+  '/img/manifest/android-chrome-192x192.png',
+  '/img/manifest/android-chrome-512x512.png',
   '/site.webmanifest',
   '/favicon.ico'
 ];

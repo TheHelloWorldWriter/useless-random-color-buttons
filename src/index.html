@@ -7,15 +7,17 @@
   <title>useless random color buttons</title>
   <meta name="description" content="Useless random color buttons. A static HTML page, built with Tailwind CSS." />
 
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#1e40af" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
 
   <link href="/css/output.css" rel="stylesheet" />
+  <link rel="modulepreload" href="/js/main.js" />
 
   <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/img/manifest/android-chrome-192x192.png" />
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body class="antialiased bg-blue-800 h-screen select-none text-white touch-manipulation">
@@ -42,9 +44,9 @@
     <div class="relative z-10 rounded-md border-2 border-current bg-blue-800 p-8 sm:p-10 text-center space-y-6">
       <div class="space-y-1">
         <div class="flex items-center justify-center gap-2 text-sm opacity-75">
-          <a href="https://www.thehelloworldwriter.com/" target="_blank" class="hover:opacity-100 transition-opacity">The Hello World Writer</a>
+          <a href="https://www.thehelloworldwriter.com/" target="_blank" rel="noopener" class="hover:opacity-100 transition-opacity">The Hello World Writer</a>
           <span class="opacity-50">·</span>
-          <a href="https://github.com/TheHelloWorldWriter/useless-random-color-buttons" target="_blank" class="hover:opacity-100 transition-opacity" aria-label="View source on GitHub">
+          <a href="https://github.com/TheHelloWorldWriter/useless-random-color-buttons" target="_blank" rel="noopener" class="hover:opacity-100 transition-opacity" aria-label="View source on GitHub">
             <img src="/img/github.svg" alt="GitHub" width="16" height="16" class="inline-block" />
           </a>
         </div>
