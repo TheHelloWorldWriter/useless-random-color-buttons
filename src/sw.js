@@ -49,11 +49,26 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Only cache same-origin requests
+  const url = new URL(event.request.url);
+  const isSameOrigin = url.origin === self.location.origin;
+
+  // Handle navigation requests (HTML pages)
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => caches.match('/index.html'))
+        .then((response) => response || caches.match('/index.html'))
+    );
+    return;
+  }
+
+  // Handle other requests with network-first strategy
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Cache successful responses
-        if (response.ok) {
+        // Only cache successful same-origin responses
+        if (response.ok && isSameOrigin) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseClone);
@@ -63,7 +78,19 @@ self.addEventListener('fetch', (event) => {
       })
       .catch(() => {
         // Fallback to cache when offline
-        return caches.match(event.request);
+        return caches.match(event.request)
+          .then((cachedResponse) => {
+            // Return cached response or a proper error response
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // Return a proper 503 response instead of undefined
+            return new Response('Service Unavailable', {
+              status: 503,
+              statusText: 'Service Unavailable',
+              headers: { 'Content-Type': 'text/plain' }
+            });
+          });
       })
   );
 });
