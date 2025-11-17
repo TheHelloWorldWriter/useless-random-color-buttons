@@ -5,39 +5,68 @@
 'use strict';
 
 /**
- * Generates a random position for the specified element in the bounds of its parent.
+ * Generates a random position for the specified element within its parent's bounds.
+ * The position ensures the child element stays fully visible within the parent.
+ *
+ * @param {HTMLElement} child - The element to position
+ * @returns {{left: number, top: number}} Random coordinates in pixels
  */
 function getRandomPosition(child) {
   const childRect = child.getBoundingClientRect();
   const parentRect = child.parentNode.getBoundingClientRect();
-  const left = Math.random() * (parentRect.width - childRect.width);
-  const top = Math.random() * (parentRect.height - childRect.height);
-  return { left: left, top: top };
+  // Clamp to 0 to prevent negative values when child is larger than parent
+  const left = Math.max(0, Math.random() * (parentRect.width - childRect.width));
+  const top = Math.max(0, Math.random() * (parentRect.height - childRect.height));
+  return { left, top };
 }
 
 /**
  * Generates a random background color and its associated contrast text color.
+ *
+ * @returns {{backcolor: string, textcolor: string}} Object with hex background color and contrast text color
  */
 function getRandomColor() {
-  const hexcolor = `${Math.random().toString(16).slice(-6)}`;
+  // Generate random hex and pad to ensure 6 digits (Math.random can produce short strings)
+  const hexcolor = Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padStart(6, '0');
   const contrastColor = getContrastYIQ(hexcolor);
   return { backcolor: `#${hexcolor}`, textcolor: contrastColor };
 }
 
 /**
- * Calculates the contrast color of the specified hex color.
- * From https://24ways.org/2010/calculating-color-contrast/
+ * Calculates the optimal contrast text color (black or white) for a given background.
+ * Uses the YIQ color space formula to determine perceived brightness.
+ *
+ * @param {string} hexcolor - 6-character hex color string without # prefix
+ * @returns {string} Either 'black' or 'white' for optimal contrast
+ * @see https://24ways.org/2010/calculating-color-contrast/
  */
 function getContrastYIQ(hexcolor) {
-  var r = parseInt(hexcolor.substr(0, 2), 16);
-  var g = parseInt(hexcolor.substr(2, 2), 16);
-  var b = parseInt(hexcolor.substr(4, 2), 16);
-  var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-  return (yiq >= 128) ? 'black' : 'white';
+  const r = parseInt(hexcolor.substring(0, 2), 16);
+  const g = parseInt(hexcolor.substring(2, 4), 16);
+  const b = parseInt(hexcolor.substring(4, 6), 16);
+  // YIQ formula weights RGB by human eye sensitivity (green > red > blue)
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  // 128 is the midpoint of 0-255 range
+  return yiq >= 128 ? 'black' : 'white';
 }
 
+/**
+ * Formats a duration in milliseconds as HH:MM:SS string.
+ * Supports durations longer than 24 hours (e.g., "25:30:45").
+ *
+ * @param {number} ms - Duration in milliseconds
+ * @returns {string} Formatted duration string
+ */
 function formatDuration(ms) {
-  return new Date(ms).toISOString().substring(11, 19);
+  const totalSeconds = Math.floor(ms / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const pad = (n) => n.toString().padStart(2, '0');
+  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
 
 export { getRandomPosition, getRandomColor, formatDuration };
