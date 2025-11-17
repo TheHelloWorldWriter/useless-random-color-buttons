@@ -18,7 +18,11 @@
   }
 
   .color-button {
-    @apply border-2 border-current py-2 rounded-md text-2xl w-36 inline-block text-center;
+    @apply border-2 border-current py-2 rounded-md text-2xl w-36 inline-block text-center
+      hover:scale-105
+      active:scale-95
+      focus:outline-none focus:shadow-[0_0_0_3px_currentColor]
+      transition-transform duration-150 ease-in-out;
   }
 
 }
