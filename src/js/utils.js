@@ -2,6 +2,8 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
+// @ts-check
+
 'use strict';
 
 /**
@@ -13,7 +15,8 @@
  */
 function getRandomPosition(child) {
   const childRect = child.getBoundingClientRect();
-  const parentRect = child.parentNode.getBoundingClientRect();
+  const parent = /** @type {HTMLElement} */ (child.parentNode);
+  const parentRect = parent.getBoundingClientRect();
   // Clamp to 0 to prevent negative values when child is larger than parent
   const left = Math.max(0, Math.random() * (parentRect.width - childRect.width));
   const top = Math.max(0, Math.random() * (parentRect.height - childRect.height));
@@ -65,6 +68,7 @@ function formatDuration(ms) {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
+  /** @param {number} n */
   const pad = (n) => n.toString().padStart(2, '0');
   return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }

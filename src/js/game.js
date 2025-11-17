@@ -2,6 +2,8 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
+// @ts-check
+
 'use strict';
 
 import { getRandomPosition, getRandomColor, formatDuration } from './utils.js';
@@ -13,19 +15,22 @@ let createdCounter = 0;
 let clickedCounter = 0;
 
 // Interval IDs for cleanup
-let addButtonIntervalID = null;
-let updateStatsIntervalID = null;
+/** @type {ReturnType<typeof setInterval>|undefined} */
+let addButtonIntervalID;
+/** @type {ReturnType<typeof setInterval>|undefined} */
+let updateStatsIntervalID;
 
 // Callback for win event
+/** @type {Function|null} */
 let onWinCallback = null;
 
 // Cache DOM elements for stats display
-const createdEl = document.getElementById('stats-created');
-const clickedEl = document.getElementById('stats-clicked');
-const remainingEl = document.getElementById('stats-remaining');
-const elapsedEl = document.getElementById('stats-elapsed');
-const avgCpsEl = document.getElementById('stats-avg-cps');
-const maxCpsEl = document.getElementById('stats-max-cps');
+const createdEl = /** @type {HTMLElement} */ (document.getElementById('stats-created'));
+const clickedEl = /** @type {HTMLElement} */ (document.getElementById('stats-clicked'));
+const remainingEl = /** @type {HTMLElement} */ (document.getElementById('stats-remaining'));
+const elapsedEl = /** @type {HTMLElement} */ (document.getElementById('stats-elapsed'));
+const avgCpsEl = /** @type {HTMLElement} */ (document.getElementById('stats-avg-cps'));
+const maxCpsEl = /** @type {HTMLElement} */ (document.getElementById('stats-max-cps'));
 
 /**
  * Starts a new game session with the current settings.
@@ -120,12 +125,12 @@ function addButton() {
   button.style.backgroundColor = color.backcolor;
   button.style.color = color.textcolor;
 
-  button.addEventListener('click', (event) => {
+  button.addEventListener('click', () => {
     // Change page background to match clicked button
-    document.body.style.backgroundColor = event.target.style.backgroundColor;
-    document.body.style.color = event.target.style.color;
+    document.body.style.backgroundColor = button.style.backgroundColor;
+    document.body.style.color = button.style.color;
 
-    event.target.remove();
+    button.remove();
 
     clickedCounter++;
     updateCounters();
@@ -164,9 +169,9 @@ function addInitialButtons() {
 function updateCounters() {
   const remainingCounter = createdCounter - clickedCounter;
 
-  createdEl.textContent = createdCounter;
-  clickedEl.textContent = clickedCounter;
-  remainingEl.textContent = remainingCounter;
+  createdEl.textContent = String(createdCounter);
+  clickedEl.textContent = String(clickedCounter);
+  remainingEl.textContent = String(remainingCounter);
 
   // Check win condition: all buttons clicked and at least one was created
   if (winOnZeroButtons && remainingCounter === 0 && createdCounter > 0) {

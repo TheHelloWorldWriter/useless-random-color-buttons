@@ -2,16 +2,18 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
+// @ts-check
+
 'use strict';
 
 import { startGame, stopGame } from './game.js';
 import { loadSettings, saveSettings, resetSettings } from './settings.js';
 
 // Cache main view elements
-const homeView = document.getElementById('home-view');
-const gameView = document.getElementById('game-view');
-const settingsDialog = document.getElementById('settings-dialog');
-const winDialog = document.getElementById('win-dialog');
+const homeView = /** @type {HTMLElement} */ (document.getElementById('home-view'));
+const gameView = /** @type {HTMLElement} */ (document.getElementById('game-view'));
+const settingsDialog = /** @type {HTMLDialogElement} */ (document.getElementById('settings-dialog'));
+const winDialog = /** @type {HTMLDialogElement} */ (document.getElementById('win-dialog'));
 
 /**
  * Shows the home view and resets the game state.
@@ -70,16 +72,16 @@ function closeWinDialog() {
  */
 function initApp() {
   // Home view buttons
-  document.getElementById('btn-settings').addEventListener('click', openSettingsDialog);
-  document.getElementById('btn-start').addEventListener('click', showGameView);
+  document.getElementById('btn-settings')?.addEventListener('click', openSettingsDialog);
+  document.getElementById('btn-start')?.addEventListener('click', showGameView);
 
   // Settings dialog buttons
-  document.getElementById('settings-ok').addEventListener('click', () => {
+  document.getElementById('settings-ok')?.addEventListener('click', () => {
     saveSettings();
     closeSettingsDialog();
   });
-  document.getElementById('settings-cancel').addEventListener('click', closeSettingsDialog);
-  document.getElementById('settings-reset').addEventListener('click', resetSettings);
+  document.getElementById('settings-cancel')?.addEventListener('click', closeSettingsDialog);
+  document.getElementById('settings-reset')?.addEventListener('click', resetSettings);
 
   // Close settings dialog when clicking outside (on backdrop)
   settingsDialog.addEventListener('click', (event) => {
@@ -89,11 +91,11 @@ function initApp() {
   });
 
   // Win dialog buttons
-  document.getElementById('win-play-again').addEventListener('click', () => {
+  document.getElementById('win-play-again')?.addEventListener('click', () => {
     closeWinDialog();
     showGameView();
   });
-  document.getElementById('win-home').addEventListener('click', () => {
+  document.getElementById('win-home')?.addEventListener('click', () => {
     closeWinDialog();
     showHomeView();
   });
