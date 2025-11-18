@@ -7,7 +7,7 @@
 'use strict';
 
 import { getRandomPosition, getRandomColor, formatDuration } from './utils.js';
-import { getIntSetting, getBoolSetting, getStringSetting, ButtonDisplay } from './config.js';
+import { getIntSetting, getBoolSetting } from './config.js';
 
 // Game state
 let winOnZeroButtons = true;
@@ -115,15 +115,15 @@ function startUpdatingStats() {
 
 /**
  * Strategy pattern for button text generation.
- * Each strategy takes the current state and returns the button text.
+ * Array index corresponds to ButtonDisplay enum value.
  *
- * @type {Object.<string, function({backcolor: string}): string>}
+ * @type {Array<function({backcolor: string}): string>}
  */
-const buttonTextStrategies = {
-  [ButtonDisplay.HEX_COLOR]: (color) => color.backcolor,
-  [ButtonDisplay.COUNTER]: () => String(createdCounter + 1),
-  [ButtonDisplay.ELAPSED_TIME]: () => formatDuration(Date.now() - gameStartTime)
-};
+const buttonTextStrategies = [
+  (color) => color.backcolor,                                    // 0: HEX_COLOR
+  () => String(createdCounter + 1),                             // 1: COUNTER
+  () => formatDuration(Date.now() - gameStartTime)              // 2: ELAPSED_TIME
+];
 
 /**
  * Creates and adds a new color button to the game area.
@@ -135,8 +135,8 @@ function addButton() {
   button.classList.add('absolute', 'color-button', 'game-button');
 
   const color = getRandomColor();
-  const displayMode = getStringSetting('buttonDisplay');
-  const textStrategy = buttonTextStrategies[displayMode] || buttonTextStrategies[ButtonDisplay.HEX_COLOR];
+  const displayMode = getIntSetting('buttonDisplay');
+  const textStrategy = buttonTextStrategies[displayMode] || buttonTextStrategies[0];
 
   button.textContent = textStrategy(color);
   button.style.backgroundColor = color.backcolor;

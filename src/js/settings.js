@@ -6,15 +6,13 @@
 
 'use strict';
 
-import { DEFAULTS, getIntSetting, setIntSetting, getBoolSetting, setBoolSetting, getStringSetting, setStringSetting } from './config.js';
+import { DEFAULTS, getIntSetting, setIntSetting, getBoolSetting, setBoolSetting } from './config.js';
 
 // Cache DOM elements for settings form
 const initialCountEl = /** @type {HTMLInputElement} */ (document.getElementById('settings-initial'));
 const addButtonDelayEl = /** @type {HTMLInputElement} */ (document.getElementById('settings-delay'));
 const winOnZeroButtonsEl = /** @type {HTMLInputElement} */ (document.getElementById('settings-win-on-zero-buttons'));
-const displayHexEl = /** @type {HTMLInputElement} */ (document.getElementById('settings-display-hex'));
-const displayCounterEl = /** @type {HTMLInputElement} */ (document.getElementById('settings-display-counter'));
-const displayElapsedEl = /** @type {HTMLInputElement} */ (document.getElementById('settings-display-elapsed'));
+const buttonDisplayRadios = /** @type {NodeListOf<HTMLInputElement>} */ (document.querySelectorAll('input[name="button-display"]'));
 
 /**
  * Loads settings from localStorage into the settings form.
@@ -25,10 +23,8 @@ function loadSettings() {
   addButtonDelayEl.value = String(getIntSetting('addButtonDelay'));
   winOnZeroButtonsEl.checked = getBoolSetting('winOnZeroButtons');
 
-  const buttonDisplay = getStringSetting('buttonDisplay');
-  displayHexEl.checked = buttonDisplay === 'hex';
-  displayCounterEl.checked = buttonDisplay === 'counter';
-  displayElapsedEl.checked = buttonDisplay === 'elapsed';
+  const buttonDisplay = getIntSetting('buttonDisplay');
+  buttonDisplayRadios[buttonDisplay].checked = true;
 }
 
 /**
@@ -39,13 +35,8 @@ function saveSettings() {
   setIntSetting('addButtonDelay', addButtonDelayEl.value);
   setBoolSetting('winOnZeroButtons', winOnZeroButtonsEl.checked);
 
-  if (displayHexEl.checked) {
-    setStringSetting('buttonDisplay', 'hex');
-  } else if (displayCounterEl.checked) {
-    setStringSetting('buttonDisplay', 'counter');
-  } else if (displayElapsedEl.checked) {
-    setStringSetting('buttonDisplay', 'elapsed');
-  }
+  const selectedRadio = /** @type {HTMLInputElement} */ (document.querySelector('input[name="button-display"]:checked'));
+  setIntSetting('buttonDisplay', parseInt(selectedRadio.value, 10));
 }
 
 /**
@@ -57,9 +48,7 @@ function resetSettings() {
   addButtonDelayEl.value = String(DEFAULTS.addButtonDelay);
   winOnZeroButtonsEl.checked = DEFAULTS.winOnZeroButtons;
 
-  displayHexEl.checked = DEFAULTS.buttonDisplay === 'hex';
-  displayCounterEl.checked = DEFAULTS.buttonDisplay === 'counter';
-  displayElapsedEl.checked = DEFAULTS.buttonDisplay === 'elapsed';
+  buttonDisplayRadios[DEFAULTS.buttonDisplay].checked = true;
 }
 
 export { loadSettings, saveSettings, resetSettings };
