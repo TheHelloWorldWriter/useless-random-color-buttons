@@ -77,8 +77,9 @@ function initApp() {
 
   // Settings dialog buttons
   document.getElementById('settings-ok')?.addEventListener('click', () => {
-    saveSettings();
-    closeSettingsDialog();
+    if (saveSettings()) {
+      closeSettingsDialog();
+    }
   });
   document.getElementById('settings-cancel')?.addEventListener('click', closeSettingsDialog);
   document.getElementById('settings-reset')?.addEventListener('click', resetSettings);

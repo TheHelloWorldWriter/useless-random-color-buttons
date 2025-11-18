@@ -28,15 +28,46 @@ function loadSettings() {
 }
 
 /**
+ * Validates settings inputs and returns error message if invalid.
+ *
+ * @returns {string|null} Error message or null if valid
+ */
+function validateSettings() {
+  const initialCount = parseInt(initialCountEl.value, 10);
+  const delay = parseInt(addButtonDelayEl.value, 10);
+
+  if (isNaN(initialCount) || initialCount < 0 || initialCount > 1000) {
+    return 'Initial button count must be between 0 and 1000';
+  }
+
+  if (isNaN(delay) || delay < 100 || delay > 10000) {
+    return 'Button delay must be between 100 and 10000 ms';
+  }
+
+  return null;
+}
+
+/**
  * Saves the current form values to localStorage.
+ * Returns true if successful, false if validation failed.
+ *
+ * @returns {boolean} True if saved successfully
  */
 function saveSettings() {
+  const error = validateSettings();
+  if (error) {
+    alert(error);
+    return false;
+  }
+
   setIntSetting('initialCount', initialCountEl.value);
   setIntSetting('addButtonDelay', addButtonDelayEl.value);
   setBoolSetting('winOnZeroButtons', winOnZeroButtonsEl.checked);
 
   const selectedRadio = /** @type {HTMLInputElement} */ (document.querySelector('input[name="button-display"]:checked'));
   setIntSetting('buttonDisplay', parseInt(selectedRadio.value, 10));
+
+  return true;
 }
 
 /**
