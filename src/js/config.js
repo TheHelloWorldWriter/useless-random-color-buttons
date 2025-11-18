@@ -7,15 +7,31 @@
 'use strict';
 
 /**
+ * Button display mode enum.
+ * Defines how text is displayed on game buttons.
+ *
+ * @enum {string}
+ */
+export const ButtonDisplay = Object.freeze({
+  /** Display hex color code (e.g., #abc123) */
+  HEX_COLOR: 'hex',
+  /** Display sequential counter (e.g., 1, 2, 3...) */
+  COUNTER: 'counter',
+  /** Display elapsed time since game start (e.g., 00:01:25) */
+  ELAPSED_TIME: 'elapsed'
+});
+
+/**
  * Default settings for the application.
  * These values are used when no saved settings exist in localStorage.
  *
- * @type {{initialCount: number, addButtonDelay: number, winOnZeroButtons: boolean}}
+ * @type {{initialCount: number, addButtonDelay: number, winOnZeroButtons: boolean, buttonDisplay: string}}
  */
 export const DEFAULTS = {
   initialCount: 100,
   addButtonDelay: 1000,
-  winOnZeroButtons: true
+  winOnZeroButtons: true,
+  buttonDisplay: ButtonDisplay.HEX_COLOR
 };
 
 /**
@@ -60,4 +76,26 @@ export function getBoolSetting(key) {
  */
 export function setBoolSetting(key, value) {
   localStorage.setItem(key, String(value));
+}
+
+/**
+ * Retrieves a string setting value from localStorage.
+ * Returns the default value if the setting is not found.
+ *
+ * @param {keyof typeof DEFAULTS} key - The setting key to retrieve
+ * @returns {string} The string setting value
+ */
+export function getStringSetting(key) {
+  const stored = localStorage.getItem(key);
+  return stored !== null ? stored : /** @type {string} */ (DEFAULTS[key]);
+}
+
+/**
+ * Saves a string setting value to localStorage.
+ *
+ * @param {string} key - The setting key to save
+ * @param {string} value - The string value to save
+ */
+export function setStringSetting(key, value) {
+  localStorage.setItem(key, value);
 }

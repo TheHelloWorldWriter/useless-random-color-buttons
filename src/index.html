@@ -114,6 +114,22 @@
         <span>win when no buttons remain on screen</span>
       </label>
 
+      <fieldset class="space-y-2">
+        <legend class="block mb-2">button display</legend>
+        <label class="flex gap-x-2 items-center">
+          <input type="radio" class="radio-input" name="button-display" value="hex" id="settings-display-hex" checked />
+          <span>hex color code</span>
+        </label>
+        <label class="flex gap-x-2 items-center">
+          <input type="radio" class="radio-input" name="button-display" value="counter" id="settings-display-counter" />
+          <span>sequential counter</span>
+        </label>
+        <label class="flex gap-x-2 items-center">
+          <input type="radio" class="radio-input" name="button-display" value="elapsed" id="settings-display-elapsed" />
+          <span>elapsed time</span>
+        </label>
+      </fieldset>
+
       <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <li>
           <button id="settings-ok" type="button" class="bg-yellow-400 color-button text-black w-full">ok</button>
