@@ -13,8 +13,19 @@
     @apply bg-transparent border-b-2 border-current mx-2 w-20;
   }
 
+  .checkbox-input {
+    @apply appearance-none border-2 border-white rounded h-5 w-5 cursor-pointer flex-shrink-0
+      checked:bg-white checked:border-white
+      relative;
+  }
+
+  .checkbox-input:checked::after {
+    content: '✓';
+    @apply absolute inset-0 flex items-center justify-center text-blue-800 text-sm font-bold;
+  }
+
   .radio-input {
-    @apply appearance-none border-2 border-white checked:bg-white h-4 p-1 rounded-full text-2xl w-4;
+    @apply appearance-none border-2 border-white checked:bg-white h-5 w-5 rounded-full cursor-pointer flex-shrink-0;
   }
 
   .color-button {
