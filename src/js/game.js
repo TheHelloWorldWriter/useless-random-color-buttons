@@ -33,6 +33,20 @@ const elapsedEl = /** @type {HTMLElement} */ (document.getElementById('stats-ela
 const avgCpsEl = /** @type {HTMLElement} */ (document.getElementById('stats-avg-cps'));
 const maxCpsEl = /** @type {HTMLElement} */ (document.getElementById('stats-max-cps'));
 
+// Cache theme-color meta tag
+const themeColorMeta = /** @type {HTMLMetaElement} */ (document.querySelector('meta[name="theme-color"]'));
+
+/**
+ * Updates the theme-color meta tag for mobile browser UI.
+ *
+ * @param {string} color - Hex color code to set as theme color
+ */
+function updateThemeColor(color) {
+  if (themeColorMeta) {
+    themeColorMeta.content = color;
+  }
+}
+
 /**
  * Starts a new game session with the current settings.
  * Resets counters, creates initial buttons, and begins the game loop.
@@ -146,6 +160,9 @@ function addButton() {
     // Change page background to match clicked button
     document.body.style.backgroundColor = button.style.backgroundColor;
     document.body.style.color = button.style.color;
+
+    // Update theme-color meta tag for mobile browser UI
+    updateThemeColor(button.style.backgroundColor);
 
     button.remove();
 

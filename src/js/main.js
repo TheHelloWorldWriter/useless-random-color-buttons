@@ -27,6 +27,11 @@ function showHomeView() {
   // Reset background to default
   document.body.style.backgroundColor = '';
   document.body.style.color = '';
+  // Reset theme-color to app default blue
+  const themeColorMeta = /** @type {HTMLMetaElement} */ (document.querySelector('meta[name="theme-color"]'));
+  if (themeColorMeta) {
+    themeColorMeta.content = '#1e40af';
+  }
 }
 
 /**
