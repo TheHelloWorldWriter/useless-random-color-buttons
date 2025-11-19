@@ -129,13 +129,17 @@ function initApp() {
   });
   document.getElementById('give-up-no')?.addEventListener('click', closeGiveUpDialog);
 
-  // ESC key handler - only triggers give-up dialog when in game view
+  // ESC key handler - handles both opening and closing give-up dialog
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !gameView.classList.contains('hidden')) {
-      // Prevent default ESC behavior (closing dialogs)
-      event.preventDefault();
-      // Only open give-up dialog if no other dialog is open
-      if (!giveUpDialog.open && !settingsDialog.open && !winDialog.open) {
+      // If give-up dialog is open, close it (continue playing)
+      if (giveUpDialog.open) {
+        event.preventDefault();
+        closeGiveUpDialog();
+      }
+      // If in game view with no dialogs open, open give-up dialog
+      else if (!settingsDialog.open && !winDialog.open) {
+        event.preventDefault();
         openGiveUpDialog();
       }
     }
