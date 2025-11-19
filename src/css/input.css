@@ -29,7 +29,7 @@
   }
 
   .checkbox-input {
-    @apply appearance-none border-2 border-white rounded h-5 w-5 cursor-pointer flex-shrink-0
+    @apply appearance-none border-2 border-white rounded h-5 w-5 cursor-pointer shrink-0
       checked:bg-white checked:border-white
       relative;
   }
@@ -40,7 +40,7 @@
   }
 
   .radio-input {
-    @apply appearance-none border-2 border-white checked:bg-white h-5 w-5 rounded-full cursor-pointer flex-shrink-0;
+    @apply appearance-none border-2 border-white checked:bg-white h-5 w-5 rounded-full cursor-pointer shrink-0;
   }
 
   .color-button {
