@@ -7,7 +7,6 @@ const STATIC_ASSETS = [
   '/index.html',
   '/css/output.css',
   '/js/app.js',
-  '/img/github.svg',
   '/img/manifest/android-chrome-192x192.png',
   '/img/manifest/android-chrome-512x512.png',
   '/site.webmanifest',
