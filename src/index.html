@@ -61,7 +61,7 @@
   </section>
 
   <!-- GAME VIEW -->
-  <section id="game-view" class="hidden">
+  <section id="game-view" class="hidden relative h-screen">
     <header class="p-3 text-center">
       <ul class="grid grid-cols-3 md:grid-cols-6 gap-8">
         <li>
@@ -90,6 +90,9 @@
         </li>
       </ul>
     </header>
+    <footer class="absolute bottom-0 left-0 right-0 p-3 text-center">
+      <a href="#" id="btn-give-up" class="text-white underline hover:no-underline opacity-75 hover:opacity-100 transition-opacity">give up?</a>
+    </footer>
   </section>
 
   <!-- SETTINGS DIALOG -->
@@ -159,6 +162,22 @@
         </li>
         <li>
           <button id="win-home" type="button" class="bg-gray-400 color-button text-black w-full">home</button>
+        </li>
+      </ul>
+    </div>
+  </dialog>
+
+  <!-- GIVE UP CONFIRMATION DIALOG -->
+  <dialog id="give-up-dialog" class="m-auto rounded-md border-2 border-current bg-blue-800 text-white p-6 text-xl backdrop:bg-black/50 max-w-lg w-[calc(100%-2rem)]">
+    <div class="space-y-6 text-center">
+      <h2 class="text-2xl sm:text-3xl">give up and go home?</h2>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <li>
+          <button id="give-up-yes" type="button" class="bg-gray-400 color-button text-black w-full">yes, give up</button>
+        </li>
+        <li>
+          <button id="give-up-no" type="button" class="bg-yellow-400 color-button text-black w-full">no, keep playing</button>
         </li>
       </ul>
     </div>

@@ -14,6 +14,7 @@ const homeView = /** @type {HTMLElement} */ (document.getElementById('home-view'
 const gameView = /** @type {HTMLElement} */ (document.getElementById('game-view'));
 const settingsDialog = /** @type {HTMLDialogElement} */ (document.getElementById('settings-dialog'));
 const winDialog = /** @type {HTMLDialogElement} */ (document.getElementById('win-dialog'));
+const giveUpDialog = /** @type {HTMLDialogElement} */ (document.getElementById('give-up-dialog'));
 
 /**
  * Shows the home view and resets the game state.
@@ -67,6 +68,20 @@ function closeWinDialog() {
 }
 
 /**
+ * Opens the give-up confirmation dialog.
+ */
+function openGiveUpDialog() {
+  giveUpDialog.showModal();
+}
+
+/**
+ * Closes the give-up dialog.
+ */
+function closeGiveUpDialog() {
+  giveUpDialog.close();
+}
+
+/**
  * Initializes the application by setting up all event listeners.
  * Called when the page finishes loading.
  */
@@ -99,6 +114,31 @@ function initApp() {
   document.getElementById('win-home')?.addEventListener('click', () => {
     closeWinDialog();
     showHomeView();
+  });
+
+  // Give up button in game view footer
+  document.getElementById('btn-give-up')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    openGiveUpDialog();
+  });
+
+  // Give up dialog buttons
+  document.getElementById('give-up-yes')?.addEventListener('click', () => {
+    closeGiveUpDialog();
+    showHomeView();
+  });
+  document.getElementById('give-up-no')?.addEventListener('click', closeGiveUpDialog);
+
+  // ESC key handler - only triggers give-up dialog when in game view
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !gameView.classList.contains('hidden')) {
+      // Prevent default ESC behavior (closing dialogs)
+      event.preventDefault();
+      // Only open give-up dialog if no other dialog is open
+      if (!giveUpDialog.open && !settingsDialog.open && !winDialog.open) {
+        openGiveUpDialog();
+      }
+    }
   });
 }
 
