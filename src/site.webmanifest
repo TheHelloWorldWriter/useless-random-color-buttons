@@ -1,7 +1,7 @@
 {
   "name": "useless random color buttons",
-  "short_name": "color btns",
-  "description": "Click colorful buttons in this useless but satisfying game",
+  "short_name": "urc buttons",
+  "description": "Click colored buttons that spawn and pile up all over your screen. Fight the rising visual chaos, track your clicking stats, and try to clear the mess.",
   "start_url": "/",
   "scope": "/",
   "icons": [

@@ -1,7 +1,7 @@
 {
   "name": "useless-random-color-buttons",
   "version": "2.0.0",
-  "description": "Useless random color buttons game",
+  "description": "A static PWA built with Vanilla JS and Tailwind CSS. Click colored buttons that spawn and pile up, fight visual chaos, and track your performance stats.",
   "type": "module",
   "private": true,
   "scripts": {
