@@ -7,19 +7,24 @@
 'use strict';
 
 /**
- * Generates a random position for the specified element within its parent's bounds.
- * The position ensures the child element stays fully visible within the parent.
+ * Generates a random position for the specified element within the viewport.
+ * Uses window.innerWidth/innerHeight to include the full viewport width including
+ * any scrollbar reserve space, ensuring buttons can reach the right edge.
  *
  * @param {HTMLElement} child - The element to position
  * @returns {{left: number, top: number}} Random coordinates in pixels
  */
 function getRandomPosition(child) {
   const childRect = child.getBoundingClientRect();
-  const parent = /** @type {HTMLElement} */ (child.parentNode);
-  const parentRect = parent.getBoundingClientRect();
-  // Clamp to 0 to prevent negative values when child is larger than parent
-  const left = Math.max(0, Math.random() * (parentRect.width - childRect.width));
-  const top = Math.max(0, Math.random() * (parentRect.height - childRect.height));
+
+  // Use viewport dimensions instead of parent rect to avoid scrollbar reserve issues
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  // Clamp to 0 to prevent negative values when child is larger than viewport
+  const left = Math.max(0, Math.random() * (viewportWidth - childRect.width));
+  const top = Math.max(0, Math.random() * (viewportHeight - childRect.height));
+
   return { left, top };
 }
 
