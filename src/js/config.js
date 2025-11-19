@@ -17,8 +17,8 @@ export const ButtonDisplay = Object.freeze({
   HEX_COLOR: 0,
   /** Display sequential counter (e.g., 1, 2, 3...) */
   COUNTER: 1,
-  /** Display elapsed time since game start (e.g., 00:01:25) */
-  ELAPSED_TIME: 2
+  /** Display the timestamp when the button was created (e.g., 00:01:23) */
+  TIMESTAMP: 2
 });
 
 /**

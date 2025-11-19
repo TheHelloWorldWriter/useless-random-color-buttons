@@ -122,7 +122,7 @@ function startUpdatingStats() {
 const buttonTextStrategies = [
   (color) => color.backcolor,                                    // 0: HEX_COLOR
   () => String(createdCounter + 1),                             // 1: COUNTER
-  () => formatDuration(Date.now() - gameStartTime)              // 2: ELAPSED_TIME
+  () => formatDuration(Date.now() - gameStartTime)              // 2: TIMESTAMP
 ];
 
 /**
