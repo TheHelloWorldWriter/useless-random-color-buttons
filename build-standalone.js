@@ -20,7 +20,7 @@ const __dirname = dirname(__filename);
 const CONFIG = {
   distDir: './dist',
   outputDir: './dist-standalone',
-  outputFile: 'useless-random-color-buttons.html',
+  outputFile: 'urcbuttons.html',
   indexHtml: 'index.html',
   cssFile: 'css/output.css',
   jsFile: 'js/app.js'
