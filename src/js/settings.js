@@ -36,12 +36,17 @@ function validateSettings() {
   const initialCount = parseInt(initialCountEl.value, 10);
   const delay = parseInt(addButtonDelayEl.value, 10);
 
-  if (isNaN(initialCount) || initialCount < 0 || initialCount > 1000) {
-    return 'Initial button count must be between 0 and 1000';
+  const initialMin = parseInt(initialCountEl.min, 10);
+  const initialMax = parseInt(initialCountEl.max, 10);
+  const delayMin = parseInt(addButtonDelayEl.min, 10);
+  const delayMax = parseInt(addButtonDelayEl.max, 10);
+
+  if (isNaN(initialCount) || initialCount < initialMin || initialCount > initialMax) {
+    return `Initial button count must be between ${initialMin} and ${initialMax}`;
   }
 
-  if (isNaN(delay) || delay < 100 || delay > 10000) {
-    return 'Button delay must be between 100 and 10000 ms';
+  if (isNaN(delay) || delay < delayMin || delay > delayMax) {
+    return `Button delay must be between ${delayMin} and ${delayMax} ms`;
   }
 
   return null;

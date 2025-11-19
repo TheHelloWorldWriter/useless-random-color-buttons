@@ -100,13 +100,13 @@
       <div class="space-y-5">
         <label class="block">
           <span class="block sm:inline font-semibold mb-1 sm:mb-0">how many buttons to start?</span>
-          <input type="number" class="number-input" id="settings-initial" min="0" value="100" />
+          <input type="number" class="number-input" id="settings-initial" min="0" max="10000" value="100" />
         </label>
 
         <label class="block">
           <span class="block sm:inline font-semibold mb-1 sm:mb-0">how fast do they appear?</span>
           <span class="opacity-75">every</span>
-          <input type="number" class="number-input" id="settings-delay" min="0" value="1000" />
+          <input type="number" class="number-input" id="settings-delay" min="0" max="86400000" value="1000" />
           <span class="opacity-75">ms</span>
         </label>
 
