@@ -87,6 +87,17 @@ function closeGiveUpDialog() {
 }
 
 /**
+ * Toggles fullscreen mode on/off.
+ */
+function toggleFullscreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen();
+  }
+}
+
+/**
  * Initializes the application by setting up all event listeners.
  * Called when the page finishes loading.
  */
@@ -94,6 +105,12 @@ function initApp() {
   // Home view buttons
   document.getElementById('btn-settings')?.addEventListener('click', openSettingsDialog);
   document.getElementById('btn-start')?.addEventListener('click', showGameView);
+
+  // Fullscreen toggle
+  document.getElementById('btn-fullscreen')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    toggleFullscreen();
+  });
 
   // Settings dialog buttons
   document.getElementById('settings-ok')?.addEventListener('click', () => {
