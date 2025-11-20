@@ -39,7 +39,7 @@ app runs.
 
 It also saves space. If I had converted this to a native desktop app (using
 Electron or similar tools), the file size would be huge. By keeping it as pure
-web code, the entire app is only 78KB (and the ZIP archive is just 55KB). It's
+web code, the entire app is only 85KB (and the ZIP archive is just 63KB). It's
 simple, lightweight, and it works.
 
 

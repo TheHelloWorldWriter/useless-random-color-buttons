@@ -37,6 +37,9 @@ const LOCAL_FONT_CSS = `<style>
     }
   </style>`;
 
+// Local favicon link to replace PWA favicon
+const LOCAL_FAVICON = `<link rel="icon" href="./favicon.png" />`;
+
 /**
  * Reads a file from the dist directory
  */
@@ -124,6 +127,17 @@ function buildPackaged() {
     console.log('✅ Local font configured\n');
   } catch (error) {
     console.error(`❌ Error replacing fonts: ${error.message}`);
+    process.exit(1);
+  }
+
+  // Replace favicon with local path
+  console.log('🖼️  Replacing favicon with local path...');
+  try {
+    const faviconSection = findBetweenMarkers(html, 'PACKAGED:FAVICON');
+    html = faviconSection.before + LOCAL_FAVICON + faviconSection.after;
+    console.log('✅ Favicon configured\n');
+  } catch (error) {
+    console.error(`❌ Error replacing favicon: ${error.message}`);
     process.exit(1);
   }
 
