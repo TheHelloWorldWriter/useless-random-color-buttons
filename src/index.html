@@ -53,7 +53,7 @@
     <div class="relative z-10 rounded-md border-2 border-current bg-blue-800 p-8 sm:p-10 text-center space-y-6">
 
       <!-- The fullscreen toggle button -->
-      <button id="btn-fullscreen" type="button" class="absolute top-2 right-2 p-2 opacity-50 hover:opacity-100 transition-opacity" aria-label="Toggle fullscreen" title="Toggle fullscreen">
+      <button id="btn-fullscreen" type="button" class="absolute top-2 right-2 p-2 opacity-50 hover:opacity-100 transition-opacity" aria-label="Toggle fullscreen" title="toggle fullscreen">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
         </svg>
@@ -83,6 +83,8 @@
 
   <!-- GAME VIEW -->
   <section id="game-view" class="hidden relative h-screen">
+
+    <!-- Header with game stats -->
     <header class="p-3 text-center">
       <ul class="grid grid-cols-3 md:grid-cols-6 gap-8">
         <li>
@@ -111,6 +113,8 @@
         </li>
       </ul>
     </header>
+
+    <!-- Footer with give up button -->
     <footer class="absolute bottom-0 left-0 right-0 p-3 text-center">
       <a href="#" id="btn-give-up" class="underline hover:no-underline opacity-75 hover:opacity-100 transition-opacity">give up?</a>
     </footer>
@@ -121,12 +125,14 @@
     <div class="space-y-6">
       <h2 class="text-2xl sm:text-3xl text-center font-bold">settings</h2>
 
+      <!-- The initial number of buttons setting -->
       <div class="space-y-5">
         <label class="block">
           <span class="block sm:inline font-semibold mb-1 sm:mb-0">how many buttons to start?</span>
           <input type="number" class="number-input" id="settings-initial" min="0" max="10000" value="100" />
         </label>
 
+        <!-- The delay between button appearances setting -->
         <label class="block">
           <span class="block sm:inline font-semibold mb-1 sm:mb-0">how fast do they appear?</span>
           <span class="opacity-75">every</span>
@@ -134,6 +140,7 @@
           <span class="opacity-75">ms</span>
         </label>
 
+        <!-- The button display mode setting -->
         <fieldset class="space-y-3 md:space-y-0">
           <legend class="font-semibold mb-3 md:mb-2">show on buttons:</legend>
           <div class="flex flex-col md:flex-row gap-3 md:gap-6">
@@ -152,12 +159,14 @@
           </div>
         </fieldset>
 
+        <!-- The game mode setting -->
         <label class="flex gap-x-3 items-center cursor-pointer">
           <input type="checkbox" class="checkbox-input" id="settings-win-on-zero-buttons" name="game-mode" checked />
           <span class="font-semibold">I want to win by clicking them all!</span>
         </label>
       </div>
 
+      <!-- Buttons for dialog actions -->
       <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
         <li>
           <button id="settings-ok" type="button" class="bg-yellow-400 color-button text-black w-full">ok</button>
@@ -177,6 +186,7 @@
     <div class="space-y-6 text-center">
       <h2 class="text-3xl sm:text-4xl">You Won!</h2>
 
+      <!-- Buttons for the next action -->
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <li>
           <button id="win-play-again" type="button" class="bg-yellow-400 color-button text-black w-full">play again</button>
@@ -193,6 +203,7 @@
     <div class="space-y-6 text-center">
       <h2 class="text-2xl sm:text-3xl">give up and go home?</h2>
 
+      <!-- Buttons for confirmation -->
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <li>
           <button id="give-up-yes" type="button" class="bg-gray-400 color-button text-black w-full">yes, give up</button>
