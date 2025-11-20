@@ -7,10 +7,12 @@ const STATIC_ASSETS = [
   '/index.html',
   '/css/output.css',
   '/js/app.js',
-  '/img/manifest/android-chrome-192x192.png',
-  '/img/manifest/android-chrome-512x512.png',
   '/site.webmanifest',
-  '/favicon.ico'
+  '/favicon.png',
+  '/img/manifest/icon-192.png',
+  '/img/manifest/icon-192-maskable.png',
+  '/img/manifest/icon-512.png',
+  '/img/manifest/icon-512-maskable.png',
 ];
 
 // Install the Service Worker

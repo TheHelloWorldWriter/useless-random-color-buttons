@@ -6,22 +6,35 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/img/manifest/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/img/manifest/icon-192.png",
       "type": "image/png",
-      "purpose": "any"
+      "sizes": "192x192"
     },
     {
-      "src": "/img/manifest/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/img/manifest/icon-512.png",
       "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "512x512"
+    },
+    {
+      "src": "/img/manifest/icon-192-maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/img/manifest/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
   "theme_color": "#1e40af",
   "background_color": "#1e40af",
   "display": "standalone",
   "orientation": "any",
-  "categories": ["games", "entertainment"],
+  "categories": [
+    "games",
+    "entertainment"
+  ],
   "lang": "en"
 }
