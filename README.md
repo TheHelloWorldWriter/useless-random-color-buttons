@@ -12,6 +12,13 @@ Beyond the simple gameplay, the app functions as **digital bubble wrap**. The gl
 
 Originally built for Netlify's [Dusty Domains](https://dusty.domains/) charity event, the project is engineered with vanilla JavaScript and Tailwind CSS. This lightweight architecture ensures the app works across all modern browsers and allows it to be distributed as a single, portable HTML file that runs offline on any operating system.
 
+## Screenshots
+
+<p align="center">
+  <img width="49%" src="assets/repo/urcbuttons-welcome-screen-desktop.png" alt="useless random color buttons - Welcome Screen desktop screenshot" >
+  <img width="49%" src="assets/repo/urcbuttons-game-screen-desktop.png" alt="useless random color buttons - Game Screen desktop screenshot" >
+</p>
+
 ## How to Play
 
 -   **Click:** Tap or click buttons to remove them.
