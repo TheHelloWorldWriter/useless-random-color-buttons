@@ -19,12 +19,23 @@ const __dirname = dirname(__filename);
 // Configuration
 const CONFIG = {
   distDir: './dist',
-  outputDir: './dist-packaged',
+  outputDir: './dist-packaged/common',
   outputFile: 'urcbuttons.html',
   indexHtml: 'index.html',
   cssFile: 'css/output.css',
   jsFile: 'js/app.js'
 };
+
+// Local font CSS to replace Google Fonts CDN
+const LOCAL_FONT_CSS = `<style>
+    @font-face {
+      font-display: swap;
+      font-family: 'Itim';
+      font-style: normal;
+      font-weight: 400;
+      src: url('./itim-v16-latin-regular.woff2') format('woff2');
+    }
+  </style>`;
 
 /**
  * Reads a file from the dist directory
@@ -96,6 +107,25 @@ function buildPackaged() {
   const js = readDistFile(CONFIG.jsFile);
 
   console.log('✅ Files read successfully\n');
+
+  // Replace Google Fonts with local font
+  console.log('🔤 Replacing Google Fonts with local font...');
+  try {
+    const fontsStart = '<!-- PACKAGED:FONTS-START -->';
+    const fontsEnd = '<!-- PACKAGED:FONTS-END -->';
+    const startIdx = html.indexOf(fontsStart);
+    const endIdx = html.indexOf(fontsEnd);
+
+    if (startIdx === -1 || endIdx === -1) {
+      throw new Error('Could not find PACKAGED:FONTS markers');
+    }
+
+    html = html.substring(0, startIdx) + LOCAL_FONT_CSS + html.substring(endIdx + fontsEnd.length);
+    console.log('✅ Local font configured\n');
+  } catch (error) {
+    console.error(`❌ Error replacing fonts: ${error.message}`);
+    process.exit(1);
+  }
 
   // Replace CSS link with inline style
   console.log('🎨 Inlining CSS...');
