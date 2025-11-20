@@ -5,7 +5,7 @@
 // found in the LICENSE file.
 
 /**
- * Build script for generating a standalone single-file HTML version
+ * Build script for generating a packaged single-file HTML version
  * of the app that can run locally without a web server.
  */
 
@@ -19,7 +19,7 @@ const __dirname = dirname(__filename);
 // Configuration
 const CONFIG = {
   distDir: './dist',
-  outputDir: './dist-standalone',
+  outputDir: './dist-packaged',
   outputFile: 'urcbuttons.html',
   indexHtml: 'index.html',
   cssFile: 'css/output.css',
@@ -65,8 +65,8 @@ function findBetweenMarkers(html, markerName) {
  * Removes content between REMOVE markers
  */
 function removeMarkedSections(html) {
-  const markerStart = '<!-- STANDALONE:REMOVE-START -->';
-  const markerEnd = '<!-- STANDALONE:REMOVE-END -->';
+  const markerStart = '<!-- PACKAGED:REMOVE-START -->';
+  const markerEnd = '<!-- PACKAGED:REMOVE-END -->';
 
   let result = html;
   let startIdx;
@@ -75,7 +75,7 @@ function removeMarkedSections(html) {
   while ((startIdx = result.indexOf(markerStart)) !== -1) {
     const endIdx = result.indexOf(markerEnd, startIdx);
     if (endIdx === -1) {
-      throw new Error('Found STANDALONE:REMOVE-START without matching REMOVE-END');
+      throw new Error('Found PACKAGED:REMOVE-START without matching REMOVE-END');
     }
     result = result.substring(0, startIdx) + result.substring(endIdx + markerEnd.length);
   }
@@ -86,8 +86,8 @@ function removeMarkedSections(html) {
 /**
  * Main build function
  */
-function buildStandalone() {
-  console.log('🔨 Building standalone HTML file...\n');
+function buildPackaged() {
+  console.log('🔨 Building packaged HTML file...\n');
 
   // Read source files
   console.log('📖 Reading dist files...');
@@ -100,8 +100,8 @@ function buildStandalone() {
   // Replace CSS link with inline style
   console.log('🎨 Inlining CSS...');
   try {
-    const cssSection = findBetweenMarkers(html, 'STANDALONE:CSS');
-    const inlinedCss = `<!-- STANDALONE:CSS -->\n  <style>\n${css}\n  </style>\n  <!-- /STANDALONE:CSS -->`;
+    const cssSection = findBetweenMarkers(html, 'PACKAGED:CSS');
+    const inlinedCss = `<!-- PACKAGED:CSS -->\n  <style>\n${css}\n  </style>\n  <!-- /PACKAGED:CSS -->`;
     html = cssSection.before + inlinedCss + cssSection.after;
     console.log('✅ CSS inlined\n');
   } catch (error) {
@@ -112,8 +112,8 @@ function buildStandalone() {
   // Replace JS module script with inline script
   console.log('⚡ Inlining JavaScript...');
   try {
-    const jsSection = findBetweenMarkers(html, 'STANDALONE:JS');
-    const inlinedJs = `<!-- STANDALONE:JS -->\n  <script type="module">\n${js}\n  </script>\n  <!-- /STANDALONE:JS -->`;
+    const jsSection = findBetweenMarkers(html, 'PACKAGED:JS');
+    const inlinedJs = `<!-- PACKAGED:JS -->\n  <script type="module">\n${js}\n  </script>\n  <!-- /PACKAGED:JS -->`;
     html = jsSection.before + inlinedJs + jsSection.after;
     console.log('✅ JavaScript inlined\n');
   } catch (error) {
@@ -142,7 +142,7 @@ function buildStandalone() {
   }
 
   // Write output file
-  console.log('💾 Writing standalone HTML file...');
+  console.log('💾 Writing packaged HTML file...');
   const outputPath = `${CONFIG.outputDir}/${CONFIG.outputFile}`;
   try {
     writeFileSync(outputPath, html, 'utf-8');
@@ -156,7 +156,7 @@ function buildStandalone() {
   const fileSizeKB = Math.round(Buffer.byteLength(html, 'utf-8') / 1024);
 
   console.log('═══════════════════════════════════════════════');
-  console.log('✨ Standalone build complete!');
+  console.log('✨ Packaged build complete!');
   console.log('═══════════════════════════════════════════════');
   console.log(`📦 Output: ${outputPath}`);
   console.log(`📊 File size: ${fileSizeKB} KB`);
@@ -166,4 +166,4 @@ function buildStandalone() {
 }
 
 // Run the build
-buildStandalone();
+buildPackaged();

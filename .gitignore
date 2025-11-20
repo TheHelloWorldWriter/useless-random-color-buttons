@@ -3,7 +3,7 @@ node_modules/
 
 # build artefacts
 dist/
-dist-standalone/
+dist-packaged/
 
 # vscode (IDE) generated files
 .vscode/*
