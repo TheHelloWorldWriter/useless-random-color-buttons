@@ -6,7 +6,7 @@
 
 # useless random color buttons
 
-**useless random color buttons** is a polished, cross-platform PWA designed to be a solid time waster. The concept is simple: colored buttons spawn randomly and pile up on the screen, creating a rising tide of **controlled visual chaos**. Your goal is to fight the mess, tracking your performance data to gamify the otherwise useless action, or simply acknowledge the futility of the task and hit the "give up" button.
+**useless random color buttons** is a cross-platform web app designed purely as a time waster. The concept is simple: colored buttons spawn randomly and pile up on the screen, creating a rising tide of **controlled visual chaos**. Your goal is to fight the mess, tracking your performance data to gamify the otherwise useless action, or simply acknowledge the futility of the task and give up.
 
 Beyond the simple gameplay, the app functions as **digital bubble wrap**. The glitchy aesthetic - where buttons form a distinct, clickable heap - creates an instant gratification loop every time you clear a section. It serves as a repetitive fidget task that occupies the "fast" part of your brain (reflexes), allowing the "slow" part to take a break. Whether you want to zone out for two minutes or stress-test your browser with thousands of elements, the experience is highly configurable.
 
@@ -34,7 +34,7 @@ Since it is a Progressive Web App (PWA), it can be installed on a phone or deskt
 
 ### 2. Offline (Portable Edition)
 
-For local use, a packaged offline version is available. You can download `urcbuttons-v2.0.0-portable.zip` from [GitHub Releases](https://github.com/TheHelloWorldWriter/useless-random-color-buttons/).
+For local use, a packaged offline version is available. You can download it from [GitHub Releases](https://github.com/TheHelloWorldWriter/useless-random-color-buttons/releases/latest/).
 
 **How to run it:**
 
