@@ -41,7 +41,12 @@ Since it is a Progressive Web App (PWA), it can be installed on a phone or deskt
 
 ### 2. Offline (Portable Edition)
 
-For local use, a packaged offline version is available. You can download it from [GitHub Releases](https://github.com/TheHelloWorldWriter/useless-random-color-buttons/releases/latest/).
+For local use, a packaged offline version is available. It's distributed as a small ZIP archive that you can download from GitHub Releases.
+
+<a href="https://github.com/TheHelloWorldWriter/useless-random-color-buttons/releases/latest/">
+  <img alt="Download useless random color buttons from GitHub Releases" src="https://img.shields.io/badge/Download-from_GitHub_Releases-brightgreen?style=plastic&logo=github&color=%23181717">
+</a>
+<br><br>
 
 **How to run it:**
 
