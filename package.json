@@ -29,6 +29,6 @@
     "browser-sync": "^3.0.4",
     "chokidar-cli": "^3.0.0",
     "esbuild": "^0.27.0",
-    "html-minifier-next": "^4.1.1"
+    "html-minifier-next": "^4.2.2"
   }
 }

@@ -35,7 +35,7 @@ The project is accessible in two distinct ways: as a modern web app and as a sta
 
 ### 1. Online (PWA)
 
-You can play the latest version directly in your browser at: [**https://urcbuttons.helloworldwriter.com/**](https://urcbuttons.helloworldwriter.com/)
+You can play the latest version directly in your browser at: [**https://urcbuttons.thehww.app**](https://urcbuttons.thehww.app)
 
 Since it is a Progressive Web App (PWA), it can be installed on a phone or desktop to run like a native app. Look for the "Install" icon in your browser's address bar or share menu.
 

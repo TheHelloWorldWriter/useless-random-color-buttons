@@ -31,7 +31,7 @@ You might be looking for an .exe (Windows), an .app file (macOS), or a binary
 executable (Linux). You won't find one. That is by design.
 
 Web apps are usually run online - and you can play this one online too at
-https://urcbuttons.helloworldwriter.com/.
+https://urcbuttons.thehww.app.
 
 However, this is a completely offline version. I distributed it as a standard
 HTML file because it works everywhere. You just open it in your browser, and the
@@ -76,7 +76,7 @@ LICENSE & SOURCE
 
 This project is open source under the MIT License.
 
-Online Version: https://urcbuttons.helloworldwriter.com/
+Online Version: https://urcbuttons.thehww.app
 Source Code: https://github.com/TheHelloWorldWriter/useless-random-color-buttons
 
 Enjoy the chaos.
